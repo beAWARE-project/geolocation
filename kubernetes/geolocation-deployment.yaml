@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: geolocation
+  name: geolocation
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: geolocation
+    spec:
+      containers:
+      - image: maven-taln.upf.edu/uima_taln_geolocation:20190125b
+        name: geolocation
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "8Gi"
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+        volumeMounts:
+        - mountPath: /app/indices
+          name: geolocation-claim0
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: geolocation-claim0
+        persistentVolumeClaim:
+          claimName: geolocation-claim0
+          readOnly: true
+status: {}
