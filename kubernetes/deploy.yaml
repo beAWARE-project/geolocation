@@ -14,7 +14,7 @@ spec:
         app: geolocation
     spec:
       containers:
-      - image: maven-taln.upf.edu/uima_taln_geolocation:20190125b
+      - image: maven-taln.upf.edu/uima_taln_geolocation:20190805
         name: geolocation
         ports:
         - containerPort: 8000
@@ -25,14 +25,14 @@ spec:
           requests:
             cpu: "500m"
             memory: "1Gi"
-        volumeMounts:
-        - mountPath: /app/indices
-          name: geolocation-claim0
-          readOnly: true
+#        volumeMounts:
+#        - mountPath: /app/indices
+#          name: geolocation-claim0
+#          readOnly: true
       restartPolicy: Always
-      volumes:
-      - name: geolocation-claim0
-        persistentVolumeClaim:
-          claimName: geolocation-claim0
-          readOnly: true
+#      volumes:
+#      - name: geolocation-claim0
+#        persistentVolumeClaim:
+#          claimName: geolocation-claim0
+#          readOnly: true
 status: {}
