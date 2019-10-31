@@ -14,7 +14,7 @@ spec:
         app: geolocation
     spec:
       containers:
-      - image: maven-taln.upf.edu/uima_taln_geolocation:20191008
+      - image: maven-taln.upf.edu/uima_taln_geolocation:20191016
         name: geolocation
         ports:
         - containerPort: 8000
